@@ -1,0 +1,138 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+
+*{
+
+   /* font-family: "Poppins", sans-serif !important; */
+   font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif !important;
+   line-height: 1.42857143 !important;
+}
+
+body{
+
+   background: url(/assets/img/gradientWawes.svg) center top / cover no-repeat, linear-gradient(180deg, rgba(128, 34, 36, 0.2) 0%, rgba(128, 34, 36, 0.8) 100%);
+}
+
+hr{
+
+   padding: 0;
+   margin: 0 0 0 -22px;
+   width: 105%;
+}
+
+textarea{
+
+   resize: none;
+}
+
+::-webkit-scrollbar {
+
+   display: none;
+}
+
+.row{
+
+   width: 100%;
+   overflow: auto;
+}
+
+.col-md-6{
+/* [class *= "col-md-"]:nth-child(1){ */
+
+   height: 94.8vh;
+}
+
+.card{
+
+   background-color: rgba(255, 255, 255, 0.65);
+}
+
+.card-header{
+
+   background-color: #802224;
+   /* background-color: rgba(128, 34, 36, 1) */
+   color: #fff;
+   padding: 2rem 2rem 0.5rem 2rem;
+   display: flex;
+   gap: 1.5rem;
+   text-align: justify;
+}
+
+.card-header img{
+
+   margin-top: 0.6rem;
+}
+
+.card-header p:first-child{
+
+   font-weight: 700;
+   font-size: 23px;
+   margin-bottom: 0.4rem;
+}
+
+.card-body{
+
+   padding: 1rem 1.5rem 0 1.5rem;
+   height: 145vh;
+}
+
+.obligatorio{
+
+   font-weight: 400;
+   font-size: 12px;
+   display: flex;
+   gap: 0.2rem;
+
+   span{
+
+      color: #bc2f32;
+      font-size: 16px;
+   }
+}
+
+.card-body .row.title{
+
+   margin-top: -0.8rem;
+   margin-left: 0;
+
+   .project{
+
+      margin-top: -0.5rem;
+   }
+
+   .firstSeccionTitle{
+
+      p, div{
+
+         font-weight: 400;
+      }
+
+      .client, .project{
+
+         display: flex;
+         gap: 0.5rem;
+      }
+   }
+}
+
+.numberQuestion{
+
+   margin: 0.5rem 0.5rem;
+   padding: 0.3rem;
+   text-align: center;
+   background-color: #802224;
+   color: #fff;
+   font-weight: 700;
+}
+
+.descriptionQuestion{
+
+   margin: 0.6rem 0 0 -1rem;
+   padding: 0;
+   font-weight: 600; 
+   font-size: 20px;
+}
+
+.answerSection .col-md-11{
+
+   padding-left: 0;
+}
