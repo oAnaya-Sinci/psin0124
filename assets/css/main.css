@@ -19,9 +19,20 @@ hr{
    width: 105%;
 }
 
+textarea:focus-visible{
+
+   outline: -webkit-focus-ring-color auto 0px;
+}
+
 textarea{
 
    resize: none;
+   border-color: #fff;
+}
+
+ol li{
+
+   padding-top: 1rem;
 }
 
 ::-webkit-scrollbar {
@@ -29,21 +40,50 @@ textarea{
    display: none;
 }
 
-.row{
+.firstSeccionTitle{
+
+   margin: 0 0 1.5rem 0;
+}
+
+.modal.fade.show{
+
+   display: block;
+}
+
+.modal.fade .modal-header{
+
+   background-color: #802224;
+   color: #fff
+}
+
+.modal.fade .modal-body p{
+
+   text-align: justify;
+}
+
+.row.main-row{
 
    width: 100%;
    overflow: auto;
 }
 
-.col-md-6{
-/* [class *= "col-md-"]:nth-child(1){ */
+.row.main-row.hide{
+   display: none;
+}
+
+.col-md-6.hiddenSurvey{
+
+   opacity: 0;
+}
+
+.col-md-6.main{
 
    height: 94.8vh;
 }
 
 .card{
 
-   background-color: rgba(255, 255, 255, 0.65);
+   background-color: rgba(255, 255, 255, 0.75);
 }
 
 .card-header{
@@ -72,7 +112,8 @@ textarea{
 .card-body{
 
    padding: 1rem 1.5rem 0 1.5rem;
-   height: 145vh;
+   /* height: 145vh; */
+   height: auto;
 }
 
 .obligatorio{
@@ -91,7 +132,7 @@ textarea{
 
 .card-body .row.title{
 
-   margin-top: -0.8rem;
+   margin-top: -0.3rem;
    margin-left: 0;
 
    .project{
@@ -103,15 +144,26 @@ textarea{
 
       p, div{
 
-         font-weight: 400;
+         font-weight: 500;
+         color: #413B3B;
       }
 
-      .client, .project{
+      strong{
+
+         color: #3A3939;
+      }
+
+      .nameClient, .projectClient{
 
          display: flex;
          gap: 0.5rem;
       }
    }
+}
+
+.row.questionSection{
+
+   margin-bottom: -1rem;
 }
 
 .numberQuestion{
@@ -121,12 +173,12 @@ textarea{
    text-align: center;
    background-color: #802224;
    color: #fff;
-   font-weight: 700;
+   font-weight: 600;
 }
 
 .descriptionQuestion{
 
-   margin: 0.6rem 0 0 -1rem;
+   margin: 0.6rem 0 0 -1.8rem;
    padding: 0;
    font-weight: 600; 
    font-size: 20px;
@@ -135,4 +187,44 @@ textarea{
 .answerSection .col-md-11{
 
    padding-left: 0;
+   font-size: 13px;
+   font-weight: 500;
+}
+
+.answerSection .responses .puntuacionSection span{
+
+   padding: 0.5rem 0.8rem;
+   background-color: beige;
+   border-radius: 0.5rem;
+}
+
+.answerSection .responses .puntuacionSection span:hover{
+   background-color: #fff;
+   cursor: pointer;
+}
+
+.answerSection .responses .puntuacionSection{
+
+   display: flex;
+   gap: 0.5rem;
+   justify-content: space-evenly;
+   padding-top: 0.5rem;
+}
+
+.answerSection .responses .labels{
+
+   display: flex;
+   justify-content: space-between;
+   margin-top: 3px;
+   margin-bottom: -1rem;
+}
+
+.groupQuestionSection .row.answerSection.justify-content-center{
+
+   margin-bottom: 0.5rem;
+}
+
+.selected{
+
+   background-color: aquamarine !important;
 }
