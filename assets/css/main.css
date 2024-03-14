@@ -42,7 +42,8 @@ ol li{
 
 .firstSeccionTitle{
 
-   margin: 0 0 1.5rem 0;
+   /* margin: 0 0 1.5rem 0; */
+   margin: 0 0 0 0;
 }
 
 .modal.fade.show{
@@ -79,6 +80,7 @@ ol li{
 .col-md-6.main{
 
    height: 94.8vh;
+   margin-left: 5rem;
 }
 
 .card{
@@ -153,7 +155,10 @@ ol li{
          color: #3A3939;
       }
 
-      .nameClient, .projectClient{
+      .nameClient,
+      .project,
+      .codeProjectClient,
+      .nameProjectClient{
 
          display: flex;
          gap: 0.5rem;
@@ -221,10 +226,177 @@ ol li{
 
 .groupQuestionSection .row.answerSection.justify-content-center{
 
-   margin-bottom: 0.5rem;
+   margin-bottom: 0.5rem !important;
 }
 
 .selected{
 
    background-color: aquamarine !important;
+}
+
+
+/* Apartado de moviles */
+
+@media screen and (max-width: 1919px) and (orientation: portrait) {
+
+   .loader{
+
+      margin-left: -8.5rem !important;
+      margin-top: -3rem;
+   }
+
+   .modal-dialog{
+      width: 94%;
+   }
+
+   .row.main-row{
+
+      width: auto;
+      height: 100vh;
+   }
+
+   .col-md-6{
+
+      -webkit-box-flex: 0;
+      flex: 0 0 98% !important;
+      max-width: 98% !important;
+      margin-left: 0 !important;
+      padding-right: 0px;
+      padding-left: 10px;
+   }
+
+   .descriptionQuestion{
+
+      font-size: 14px;
+   }
+
+   .responses ol li{
+      font-size: 12px;
+   }
+
+   .mt-5{
+
+      margin-top: 0 !important;
+   }
+
+   .card-header.main{
+      flex-direction: column;
+      margin-left: 0 !important;
+      padding: 0 1rem;
+
+      img{
+         margin: 1rem auto -1rem auto;
+         width: 30%;
+         height: auto;
+      }
+
+      .descriptionSection{
+
+         font-size: 12px;
+         text-align: left;
+      }
+
+      p:first-child {
+         font-weight: 700;
+         font-size: 16px;
+         margin-bottom: 0.4rem;
+     }
+
+     .card{
+
+      width: 100% !important;
+     }
+   }
+
+   .modal-dialog{
+
+      margin-top: 3rem;
+   }
+
+   .firstSeccionTitle {
+
+      margin-top: -1.2rem;
+
+      strong{
+         font-size: 13px;
+      }
+
+      p{
+         margin-bottom: 0.5rem;
+         padding-bottom: 0;
+         font-size: 12px;
+      }
+      
+      .client{
+
+         margin-bottom: 0.5rem;
+      }
+
+      .project{
+         flex-direction: column;
+         gap: 0 !important;
+         margin-top: 0 !important;
+      }
+      .project .codeProjectClient,
+      .project .nameProjectClient{
+
+         display: flex;
+      }
+   }
+
+   .card-body{
+      padding: 0.5rem;
+
+      .row{
+         padding: 0;
+         margin: -10px;
+      }
+
+      .col-md-12{
+
+         padding: 0.5rem;
+      }
+   }
+
+   .groupQuestionSection{
+      margin-left: -0.5rem;
+      margin-top: 0.5rem;
+   }
+
+   .row.questionSection{
+
+      margin-top: 0.5rem;
+
+      display: flex;
+      flex-wrap: nowrap;
+
+      .col-md-1{
+
+         width: 20%;
+
+         .numberQuestion{
+            font-size: 12px;
+         }
+      }
+
+      .col-md-11{
+
+         width: 80%;
+
+         .descriptionQuestion{
+            font-size: 13px;
+         }
+      }
+   }
+
+   .botonera .col-md-6{
+
+      text-align: center !important;
+   }
+
+   .answerSection .responses .puntuacionSection span {
+      padding: 0.4rem 0.6rem;
+      background-color: beige;
+      border-radius: 0.5rem;
+  }
 }

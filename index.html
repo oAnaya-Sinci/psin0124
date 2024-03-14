@@ -42,7 +42,8 @@
                            <p class="nameClient"></p>
                         </div>
                         <div class="project">
-                           <p class="projectClient"></p>
+                           <p class="codeProjectClient"></p>
+                           <p class="nameProjectClient"></p>
                         </div>
                      </div>
                   </div> 
@@ -69,13 +70,15 @@
             </button>
          </div>
          <div class="modal-body">
-            <p>Bienvenido(a) a la encuesta de <strong>"Satisfacción al cliente"</strong> de parte de SINCI, para poder realizar la evaluación, por favor ingrese 
-               la llave que le fue proporcianda por parte de SINCI.</p>
-            <input type="text" name="" id="keySurveyClient" class="form-control" maxlength="36" placeholder="Llave encuesta">
-            <!-- <span class="loader"></span> -->
+            <div class="messageKey">
+               <p>Bienvenido(a) a la encuesta de <strong>"Satisfacción al cliente"</strong> de parte de SINCI, para poder realizar la evaluación, por favor ingrese la llave que le fue proporcianda por parte de SINCI.</p>
+               <input type="text" name="" id="keySurveyClient" class="form-control" maxlength="36" placeholder="Llave encuesta">
+            </div>   
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="sendKeySurvey">Realizar encuesta</button>
+            <div class="actions">
+               <button type="button" class="btn btn-primary" id="sendKeySurvey">Realizar encuesta</button>
+            </div>
          </div>
       </div>
       </div>

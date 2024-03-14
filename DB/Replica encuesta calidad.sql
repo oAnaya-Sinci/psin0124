@@ -100,4 +100,4 @@
     
     #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
     
-	INSERT INTO clientes_encuestas(id_encuesta, id_cliente_sistema_admin, nombre_cliente, codigo_proyecto_cliente, descripcion_proyecto_cliente) VALUES(1, 1, 'Cliente de prueba S.A. de C.V.', 'TEST 0124-1', 'Este proyecto es solo de prueba para revisar como funciona la encuesta');
+	INSERT INTO clientes_encuestas(id_encuesta, id_cliente_sistema_admin, nombre_cliente, codigo_proyecto_cliente, descripcion_proyecto_cliente, correo_cliente, correo_sinci) VALUES('', 1, 'Cliente de prueba S.A. de C.V.', 'TEST 0124-1', 'Este proyecto es solo de prueba para revisar como funciona la encuesta', 'omaranaya616@gmail.com', 'oanaya@sinci.com');

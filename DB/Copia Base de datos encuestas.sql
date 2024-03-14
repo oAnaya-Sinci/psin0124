@@ -4,7 +4,7 @@
 	DROP TABLE IF EXISTS encuesta;
 	CREATE TABLE encuesta(
 		id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        #id_encuesta VARCHAR(256) NOT NULL DEFAULT (UUID()),
+        id_encuesta VARCHAR(256) NOT NULL DEFAULT (UUID()),
 		nombre_encuesta VARCHAR(256) NOT NULL,
         descripcion VARCHAR(522),
         created_timestamp DATETIME NOT NULL DEFAULT NOW(),
@@ -63,14 +63,14 @@
     CREATE TABLE clientes_encuestas(
 		id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         llave_encuesta VARCHAR(256) DEFAULT (UUID()),
-        #id_encuesta VARCHAR(50) NOT NULL,
-        id_encuesta INT NOT NULL,
+        id_encuesta VARCHAR(50) NOT NULL,
+        #id_encuesta INT NOT NULL,
         id_cliente_sistema_admin INT,
         nombre_cliente VARCHAR(256),
         codigo_proyecto_cliente VARCHAR(50),
         descripcion_proyecto_cliente VARCHAR(512),
-        correo_cliente TEXT CHARACTER SET utf8 NOT NULL,
-        correo_sinci TEXT CHARACTER SET utf8 NOT NULL,
+        correo_cliente TEXT CHARACTER SET utf8 NOT NULL DEFAULT '',
+        correo_sinci TEXT CHARACTER SET utf8 NOT NULL DEFAULT '',
         estatus_encuesta INT DEFAULT 1,
         created_timestamp DATETIME NOT NULL DEFAULT NOW(),
         updated_timestamp DATETIME NOT NULL DEFAULT NOW()
@@ -79,7 +79,8 @@
     DROP TABLE IF EXISTS clientes_encuestas_contestadas;
     CREATE TABLE clientes_encuestas_contestadas(
 		id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        id_llave_encuesta INT NOT NULL,
+        id_llave_encuesta VARCHAR(50) NOT NULL,
+        datos_cliente_encuesta TEXT CHARACTER SET utf8 NOT NULL,
         respuestas_encuesta TEXT CHARACTER SET utf8 NOT NULL,
         created_timestamp DATETIME NOT NULL DEFAULT NOW(),
         updated_timestamp DATETIME NOT NULL DEFAULT NOW()

@@ -1,5 +1,6 @@
 
-let idServerSurveys = "http://127.0.0.1:1880";
+// let ipServerSurveys = "http://127.0.0.1:1880";
+let ipServerSurveys = "http://192.168.0.101:1880";
 
 ( () => {
 
@@ -9,7 +10,7 @@ let idServerSurveys = "http://127.0.0.1:1880";
       document.querySelector('.row.main-row').classList.toggle('hide');
 
       document.querySelector('#keyClientSurvey').classList.toggle('show');
-   }, 1000);
+   }, 3000);
 
    document.querySelector('#sendKeySurvey').addEventListener('click', async () => {
 
@@ -17,18 +18,19 @@ let idServerSurveys = "http://127.0.0.1:1880";
 
       try {
        
-         let dataSurveyClient = await fetch(`${idServerSurveys}/checkKeyForSurvey?id=${keyClient}`).then(json => json.json()).then(data => data);
+         let dataSurveyClient = await fetch(`${ipServerSurveys}/checkKeyForSurvey?id=${keyClient}`).then(json => json.json()).then(data => data);
 
          document.querySelector('#keyClientSurvey').classList.toggle('show');
          document.querySelector('.row.main-row').classList.toggle('hide');
          document.querySelector('.loaderPage').style.display = 'block';
 
          let nameClient = document.querySelector('.firstSeccionTitle .client .nameClient');
-         let projectClient = document.querySelector('.firstSeccionTitle .project .projectClient');
+         let codeProjectClient = document.querySelector('.firstSeccionTitle .project .codeProjectClient');
+         let nameProjectClient = document.querySelector('.firstSeccionTitle .project .nameProjectClient');
 
          let strong = document.createElement('strong');
          strong.innerText = "Cliente: ";
-         let divName = document.createElement('div');
+         let divName = document.createElement('span');
          divName.classList = "name";
          divName.innerText = dataSurveyClient.nombre_cliente;
          nameClient.appendChild(strong);
@@ -36,19 +38,19 @@ let idServerSurveys = "http://127.0.0.1:1880";
 
          strong = document.createElement('strong');
          strong.innerText = "Codigo Proyecto: ";
-         divName = document.createElement('div');
+         divName = document.createElement('span');
          divName.classList = "codeProject";
          divName.innerText = dataSurveyClient.codigo_proyecto_cliente;
-         projectClient.appendChild(strong);
-         projectClient.appendChild(divName);
+         codeProjectClient.appendChild(strong);
+         codeProjectClient.appendChild(divName);
 
          strong = document.createElement('strong');
          strong.innerText = "Descripción: ";
-         divName = document.createElement('div');
+         divName = document.createElement('span');
          divName.classList = "descriptionProject";
          divName.innerText = dataSurveyClient.descripcion_proyecto_cliente;
-         projectClient.appendChild(strong);
-         projectClient.appendChild(divName);
+         nameProjectClient.appendChild(strong);
+         nameProjectClient.appendChild(divName);
 
          // document.querySelector('.firstSeccionTitle .client .nameClient').innerHTML = `<strong>Cliente: </strong> <div class="name">${dataSurveyClient.nombre_cliente}</div>`;
          // document.querySelector('.firstSeccionTitle .project .projectClient').innerHTML = `<strong>Codigo Proyecto: </strong> <div class="codeProject">${dataSurveyClient.codigo_proyecto_cliente}</div> <strong>Descripción: </strong> <div class="descriptionProject">${dataSurveyClient.descripcion_proyecto_cliente}</div>`;
@@ -60,11 +62,24 @@ let idServerSurveys = "http://127.0.0.1:1880";
          document.querySelector('.row.main-row').classList.toggle('hide');
          document.querySelector('.loaderPage').style.display = 'block';
 
+         document.querySelector('#keyClientSurvey .modal-body .messageKey').remove();
+         document.querySelector('#keyClientSurvey .modal-body').innerHTML = "<p style='font-size: 16px; font-weight: 500;'>La llave ingresada ya ha sido usada o la misma no es valida, por favor contacte con soporte para validar la información... <span class='seconds'>10<span></p>";
+         document.querySelector('#keyClientSurvey .modal-footer').remove();
+
          setTimeout(() => {
             
             document.querySelector('.loaderPage').style.display = 'none';
             document.querySelector('.row.main-row').classList.toggle('hide');
             document.querySelector('#keyClientSurvey').classList.toggle('show');
+
+            let seconds = 10;
+            setInterval(() => {
+               document.querySelector('span.seconds').innerText = seconds --;
+            }, 1000);
+
+            setTimeout(() => {
+               location.reload()
+            }, 11000);
          }, 2000);
 
          console.warn(error);
@@ -74,7 +89,7 @@ let idServerSurveys = "http://127.0.0.1:1880";
 
 let obtainDataSurvey = async idSurvey => {
 
-   let dataSurvey = await fetch(`${idServerSurveys}/obtainDataSurvey?id=${idSurvey}`).then(json => json.json()).then(data => data);
+   let dataSurvey = await fetch(`${ipServerSurveys}/obtainDataSurvey?id=${idSurvey}`).then(json => json.json()).then(data => data);
 
    let seccionSurvey = document.querySelector('.groupQuestionSection');
 
@@ -149,9 +164,9 @@ let obtainDataSurvey = async idSurvey => {
       department = elem.nombre_seccion;
    });
 
-   // Modulo de encabezados de seccion
+   // Modulo botonera
    let divNameSection = document.createElement('div');
-   divNameSection.className = "row questionSection";
+   divNameSection.className = "row questionSection botonera";
 
    let divNumberSection = document.createElement('div');
    divNumberSection.className = "col-md-1";
@@ -169,9 +184,8 @@ let obtainDataSurvey = async idSurvey => {
    divName.appendChild(pNameSection);
    divNameSection.appendChild(divName);
 
-   // Modulo de respuestas
    let divAswerSection = document.createElement('div');
-   divAswerSection.className = "row answerSection justify-content-center mb-5";
+   divAswerSection.className = "row answerSection justify-content-center mb-5 botonera";
 
    let divCol11 = document.createElement('div');
    divCol11.className = "col-md-11";
@@ -214,6 +228,14 @@ let obtainDataSurvey = async idSurvey => {
 
    document.querySelector('.buttonSendSurvey').addEventListener('click', async () => {
 
+      await document.querySelectorAll('textarea').forEach( textarea => {
+
+         let response = textarea.value;
+
+         textarea.insertAdjacentHTML("afterend", `<span class="dataTextarea selected" style="display: none;">${response}</span>`);
+         textarea.remove();
+      });
+
       let keySurvey = document.querySelector('#keySurveyClient').value;
       let dataClient = document.querySelector('.firstSeccionTitle').innerHTML;
       let responseQuestions = document.querySelector('.groupQuestionSection').innerHTML;
@@ -229,10 +251,11 @@ let obtainDataSurvey = async idSurvey => {
          body: JSON.stringify(surveyClient),
          headers: {
             "content-type": "application/json; charset=utf-8"
-          }
+         }
       };
 
-      await fetch(`${idServerSurveys}/saveDataSurveyClient`, headers);
+      await fetch(`${ipServerSurveys}/saveDataSurveyClient`, headers);
+      location.reload();
    });
 
    setTimeout(() => {
@@ -240,5 +263,5 @@ let obtainDataSurvey = async idSurvey => {
       document.querySelector('.loaderPage').style.display = 'none';
       document.querySelector('.row.main-row').classList.toggle('hide');
       document.querySelector('.col-md-6.main').classList.toggle('hiddenSurvey');
-   }, 3000);
+   }, 2000);
 };
