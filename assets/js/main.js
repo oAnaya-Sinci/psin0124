@@ -1,6 +1,7 @@
 
 // let ipServerSurveys = "http://127.0.0.1:1880";
 let ipServerSurveys = "http://192.168.0.101:1880";
+// let ipServerSurveys = "http://10.10.103.99:1880";
 
 ( () => {
 
@@ -10,7 +11,7 @@ let ipServerSurveys = "http://192.168.0.101:1880";
       document.querySelector('.row.main-row').classList.toggle('hide');
 
       document.querySelector('#keyClientSurvey').classList.toggle('show');
-   }, 3000);
+   }, 4000);
 
    document.querySelector('#sendKeySurvey').addEventListener('click', async () => {
 
@@ -25,6 +26,7 @@ let ipServerSurveys = "http://192.168.0.101:1880";
          document.querySelector('.loaderPage').style.display = 'block';
 
          let nameClient = document.querySelector('.firstSeccionTitle .client .nameClient');
+         let ordenCompraClient = document.querySelector('.firstSeccionTitle .client .ordenCompraClient');
          let codeProjectClient = document.querySelector('.firstSeccionTitle .project .codeProjectClient');
          let nameProjectClient = document.querySelector('.firstSeccionTitle .project .nameProjectClient');
 
@@ -35,6 +37,14 @@ let ipServerSurveys = "http://192.168.0.101:1880";
          divName.innerText = dataSurveyClient.nombre_cliente;
          nameClient.appendChild(strong);
          nameClient.appendChild(divName);
+
+         strong = document.createElement('strong');
+         strong.innerText = "Orden de compra: ";
+         divName = document.createElement('span');
+         divName.classList = "codeProject";
+         divName.innerText = dataSurveyClient.orden_compra_cliente;
+         ordenCompraClient.appendChild(strong);
+         ordenCompraClient.appendChild(divName);
 
          strong = document.createElement('strong');
          strong.innerText = "Codigo Proyecto: ";

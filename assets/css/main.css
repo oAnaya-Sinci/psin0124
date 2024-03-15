@@ -40,6 +40,14 @@ ol li{
    display: none;
 }
 
+.loaderPage{
+
+   width: 16%; 
+   height: 100vh; 
+   margin: 0 auto; 
+   padding-top: 15rem;
+}
+
 .firstSeccionTitle{
 
    /* margin: 0 0 1.5rem 0; */
@@ -155,6 +163,11 @@ ol li{
          color: #3A3939;
       }
 
+      .client{
+         display: flex;
+         gap: 0.5rem;
+      }
+
       .nameClient,
       .project,
       .codeProjectClient,
@@ -239,6 +252,14 @@ ol li{
 
 @media screen and (max-width: 1919px) and (orientation: portrait) {
 
+   .loaderPage{
+
+      width: 16%; 
+      height: 100vh; 
+      margin: 0 auto 0 12rem; 
+      padding-top: 15rem;
+   }
+   
    .loader{
 
       margin-left: -8.5rem !important;

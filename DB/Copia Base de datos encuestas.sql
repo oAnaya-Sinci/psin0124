@@ -68,6 +68,7 @@
         id_cliente_sistema_admin INT,
         nombre_cliente VARCHAR(256),
         codigo_proyecto_cliente VARCHAR(50),
+        orden_compra_cliente VARCHAR(100),
         descripcion_proyecto_cliente VARCHAR(512),
         correo_cliente TEXT CHARACTER SET utf8 NOT NULL DEFAULT '',
         correo_sinci TEXT CHARACTER SET utf8 NOT NULL DEFAULT '',
