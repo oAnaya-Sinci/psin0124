@@ -1,3 +1,5 @@
+USE messages_sas;
+
 DELIMITER //
 
 CREATE PROCEDURE getSurveyClient(IN idSurvey VARCHAR(50))

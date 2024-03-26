@@ -1,5 +1,4 @@
-  
-	USE encuestario;
+USE messages_sas;
 
 	DROP TABLE IF EXISTS encuesta;
 	CREATE TABLE encuesta(
@@ -62,16 +61,17 @@
     DROP TABLE IF EXISTS clientes_encuestas;
     CREATE TABLE clientes_encuestas(
 		id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        llave_encuesta VARCHAR(256) DEFAULT (UUID()),
+        llave_encuesta VARCHAR(100),
         id_encuesta VARCHAR(50) NOT NULL,
         #id_encuesta INT NOT NULL,
-        id_cliente_sistema_admin INT,
+        #id_cliente_sistema_admin INT,
         nombre_cliente VARCHAR(256),
         codigo_proyecto_cliente VARCHAR(50),
         orden_compra_cliente VARCHAR(100),
         descripcion_proyecto_cliente VARCHAR(512),
-        correo_cliente TEXT CHARACTER SET utf8 NOT NULL DEFAULT '',
-        correo_sinci TEXT CHARACTER SET utf8 NOT NULL DEFAULT '',
+        correo_cliente VARCHAR(512),
+        correo_copia VARCHAR(512),
+        correo_copia_oculta VARCHAR(512),
         estatus_encuesta INT DEFAULT 1,
         created_timestamp DATETIME NOT NULL DEFAULT NOW(),
         updated_timestamp DATETIME NOT NULL DEFAULT NOW()
@@ -86,5 +86,3 @@
         created_timestamp DATETIME NOT NULL DEFAULT NOW(),
         updated_timestamp DATETIME NOT NULL DEFAULT NOW()
     );
-    
-    

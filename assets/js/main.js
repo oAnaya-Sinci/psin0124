@@ -1,7 +1,8 @@
 
-// let ipServerSurveys = "http://127.0.0.1:1880";
-let ipServerSurveys = "http://192.168.0.101:1880";
+let ipServerSurveys = "http://127.0.0.1:1880";
+// let ipServerSurveys = "http://192.168.0.101:1880";
 // let ipServerSurveys = "http://10.10.103.99:1880";
+// let ipServerSurveys = "https://websas.sinci.com:1880";
 
 ( () => {
 
@@ -18,12 +19,12 @@ let ipServerSurveys = "http://192.168.0.101:1880";
       let keyClient = document.querySelector('#keySurveyClient').value;
 
       try {
-       
-         let dataSurveyClient = await fetch(`${ipServerSurveys}/checkKeyForSurvey?id=${keyClient}`).then(json => json.json()).then(data => data);
 
          document.querySelector('#keyClientSurvey').classList.toggle('show');
          document.querySelector('.row.main-row').classList.toggle('hide');
          document.querySelector('.loaderPage').style.display = 'block';
+
+         let dataSurveyClient = await fetch(`${ipServerSurveys}/checkKeyForSurvey?id=${keyClient}`).then(json => json.json()).then(data => data);
 
          let nameClient = document.querySelector('.firstSeccionTitle .client .nameClient');
          let ordenCompraClient = document.querySelector('.firstSeccionTitle .client .ordenCompraClient');
@@ -68,8 +69,8 @@ let ipServerSurveys = "http://192.168.0.101:1880";
          obtainDataSurvey(dataSurveyClient.id_encuesta);
       } catch (error) {
 
-         document.querySelector('#keyClientSurvey').classList.toggle('show');
-         document.querySelector('.row.main-row').classList.toggle('hide');
+         // document.querySelector('#keyClientSurvey').classList.toggle('show');
+         // document.querySelector('.row.main-row').classList.toggle('hide');
          document.querySelector('.loaderPage').style.display = 'block';
 
          document.querySelector('#keyClientSurvey .modal-body .messageKey').remove();
@@ -236,36 +237,71 @@ let obtainDataSurvey = async idSurvey => {
       });
    });
 
-   document.querySelector('.buttonSendSurvey').addEventListener('click', async () => {
+   let modifyForPDF = () => {
 
-      await document.querySelectorAll('textarea').forEach( textarea => {
+      // Header Module
+      document.querySelector('.firstSeccionTitle .client').style = "display: flex; flex-direction: column; gap: 0.5rem; text-align: left;";
+      document.querySelector('.firstSeccionTitle .project').style = "display: flex; flex-direction: column; gap: 0.5rem; text-align: left;";
+      document.querySelectorAll('.firstSeccionTitle p').forEach( elem => { elem.style = "margin: 0; font-size: 12px;"; });
+      document.querySelectorAll('.firstSeccionTitle strong').forEach( elem => { elem.style = "font-size: 13px;"; });
+
+      // Modulo de preguntas pendientes no se puede ordenar
+      // document.querySelectorAll('.groupQuestionSection .questionSection').forEach(elem => { elem.style = "display: -webkit-box; font-size: 14px; font-weight: 600;"; });
+      document.querySelectorAll('.groupQuestionSection .questionSection').forEach(elem => { elem.style = "font-size: 12px; font-weight: 600; text-align: left;"; });
+      document.querySelectorAll('.groupQuestionSection .questionSection .col-md-1').forEach(elem => { elem.style = "display: none;"; });
+
+      // document.querySelectorAll('.groupQuestionSection hr').forEach(elem => { elem.style = "margin: -1rem 0 -0.5rem 0; padding: 0"; });
+      document.querySelectorAll('.groupQuestionSection hr').forEach(elem => { elem.style = "display: none"; });
+
+      document.querySelectorAll('.groupQuestionSection .answerSection').forEach(elem => { elem.style = "margin-top: -0.5rem"; });
+      document.querySelectorAll('.groupQuestionSection .answerSection .responses ol').forEach(elem => { elem.style = "margin: 0;"; });
+      document.querySelectorAll('.groupQuestionSection .answerSection .responses ol li').forEach(elem => { elem.style = "text-align: left; font-size: 12px"; });
+      document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection').forEach(elem => { elem.style = "padding: 0.5rem 0 0.5rem 1rem;"; });
+      document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection span').forEach(elem => { elem.style = "padding: 0.5rem 1rem;"; });
+      document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection .selected').forEach(elem => { elem.style = "border: 1px solid #000; border-radius: 0.5rem; padding: 0.2rem 0.7rem;"; });
+      document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection span.dataTextarea').forEach(elem => { elem.style = "border: 0;"; });
+      
+      document.querySelector('.groupQuestionSection .questionSection.botonera').style = "display: none;";
+      document.querySelector('.groupQuestionSection .answerSection.botonera').style = "display: none;";
+   };
+
+   document.querySelector('.buttonSendSurvey').addEventListener('click', () => {
+
+      document.querySelectorAll('textarea').forEach( textarea => {
 
          let response = textarea.value;
 
-         textarea.insertAdjacentHTML("afterend", `<span class="dataTextarea selected" style="display: none;">${response}</span>`);
+         textarea.insertAdjacentHTML("afterend", `<span class="dataTextarea selected" style='width: 100%'">${response}</span>`);
          textarea.remove();
       });
 
-      let keySurvey = document.querySelector('#keySurveyClient').value;
-      let dataClient = document.querySelector('.firstSeccionTitle').innerHTML;
-      let responseQuestions = document.querySelector('.groupQuestionSection').innerHTML;
+      modifyForPDF();
 
-      let surveyClient = {
-         'key': keySurvey,
-         'dataClient': dataClient.trim(),
-         'responseQuestions': responseQuestions.trim()
-      };
+      setTimeout(async () => {
+         let keySurvey = document.querySelector('#keySurveyClient').value;
+         let dataClient = document.querySelector('.firstSeccionTitle').innerHTML;
+         let responseQuestions = document.querySelector('.groupQuestionSection').innerHTML;
 
-      let headers = {
-         method: 'POST',
-         body: JSON.stringify(surveyClient),
-         headers: {
-            "content-type": "application/json; charset=utf-8"
-         }
-      };
+         console.log(dataClient);
 
-      await fetch(`${ipServerSurveys}/saveDataSurveyClient`, headers);
-      location.reload();
+         let surveyClient = {
+            'key': keySurvey,
+            'dataClient': dataClient.trim(),
+            'responseQuestions': responseQuestions.trim()
+         };
+
+         let headers = {
+            method: 'POST',
+            body: JSON.stringify(surveyClient),
+            headers: {
+               "content-type": "application/json; charset=utf-8"
+            }
+         };
+
+         await fetch(`${ipServerSurveys}/saveDataSurveyClient`, headers);
+
+         location.reload();
+      }, 300);
    });
 
    setTimeout(() => {

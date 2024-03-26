@@ -1,5 +1,5 @@
 
-	USE encuestario;
+	USE messages_sas;
     
     # Categorias
     INSERT INTO categorias_respuestas(nombre_categoria, descripcion_categoria, etiquetas_html) VALUES('escala semantica', 'escala de ejemplo semantica', '<span>Malo</span><span>Regular</span><span>Bueno</span><span>Excelente</span><span>No aplica</span>'); # -Seccion 1-
@@ -100,4 +100,4 @@
     
     #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
     
-	INSERT INTO clientes_encuestas(id_encuesta, id_cliente_sistema_admin, nombre_cliente, codigo_proyecto_cliente, orden_compra_cliente, descripcion_proyecto_cliente, correo_cliente, correo_sinci) VALUES('', 1, 'Cliente de prueba S.A. de C.V.', 'TEST 0124-1', 'OC010010', 'Este proyecto es solo de prueba para revisar como funciona la encuesta', 'omaranaya616@gmail.com', 'oanaya@sinci.com');
+	INSERT INTO clientes_encuestas(id_encuesta, nombre_cliente, codigo_proyecto_cliente, orden_compra_cliente, descripcion_proyecto_cliente, correo_cliente, correo_copia) VALUES('', 'Cliente de prueba S.A. de C.V.', 'TEST 0124-1', 'OC010010', 'Este proyecto es solo de prueba para revisar como funciona la encuesta', 'omaranaya616@gmail.com', 'oanaya@sinci.com');
