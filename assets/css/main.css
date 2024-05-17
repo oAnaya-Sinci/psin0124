@@ -87,7 +87,7 @@ ol li{
 
 .col-md-6.main{
 
-   height: 94.8vh;
+   height: 97.5vh;
    margin-left: 5rem;
 }
 
@@ -184,6 +184,12 @@ ol li{
    margin-bottom: -1rem;
 }
 
+.row.questionSection .col-md-1{
+
+   margin-left: -1rem;
+   margin-right: 0.15rem;
+}
+
 .numberQuestion{
 
    margin: 0.5rem 0.5rem;
@@ -227,6 +233,14 @@ ol li{
    gap: 0.5rem;
    justify-content: space-evenly;
    padding-top: 0.5rem;
+}
+
+.answerSection .responses .puntuacionSection .multiple-section{
+
+   display: grid;
+   /* flex-direction: column; */
+   gap: 0.5rem;
+   width: 95%;
 }
 
 .answerSection .responses .labels{

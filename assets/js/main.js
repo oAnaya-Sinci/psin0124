@@ -63,18 +63,23 @@ let ipServerSurveys = "http://127.0.0.1:1880";
          nameProjectClient.appendChild(strong);
          nameProjectClient.appendChild(divName);
 
-         // document.querySelector('.firstSeccionTitle .client .nameClient').innerHTML = `<strong>Cliente: </strong> <div class="name">${dataSurveyClient.nombre_cliente}</div>`;
-         // document.querySelector('.firstSeccionTitle .project .projectClient').innerHTML = `<strong>Codigo Proyecto: </strong> <div class="codeProject">${dataSurveyClient.codigo_proyecto_cliente}</div> <strong>Descripción: </strong> <div class="descriptionProject">${dataSurveyClient.descripcion_proyecto_cliente}</div>`;
-
          obtainDataSurvey(dataSurveyClient.id_encuesta);
       } catch (error) {
 
-         // document.querySelector('#keyClientSurvey').classList.toggle('show');
-         // document.querySelector('.row.main-row').classList.toggle('hide');
          document.querySelector('.loaderPage').style.display = 'block';
 
          document.querySelector('#keyClientSurvey .modal-body .messageKey').remove();
-         document.querySelector('#keyClientSurvey .modal-body').innerHTML = "<p style='font-size: 16px; font-weight: 500;'>La llave ingresada ya ha sido usada o la misma no es valida, por favor contacte con soporte para validar la información... <span class='seconds'>10<span></p>";
+
+         let messageNoSurvey = document.createElement('p');
+         messageNoSurvey.innerText = "La llave ingresada ya ha sido usada o la misma no es valida, por favor contacte con soporte para validar la información... ";
+         messageNoSurvey.style.fontSize = "16px";
+         messageNoSurvey.style.fontWeight = "500";
+         let spanSecond = document.createElement('span');
+         spanSecond.classList.add("seconds");
+         spanSecond.innerText = "10";
+         messageNoSurvey.appendChild(spanSecond)
+
+         document.querySelector('#keyClientSurvey .modal-body').appendChild(messageNoSurvey);
          document.querySelector('#keyClientSurvey .modal-footer').remove();
 
          setTimeout(() => {
@@ -85,7 +90,8 @@ let ipServerSurveys = "http://127.0.0.1:1880";
 
             let seconds = 10;
             setInterval(() => {
-               document.querySelector('span.seconds').innerText = seconds --;
+               if(seconds > 0)
+                  document.querySelector('span.seconds').innerText = '0'+(seconds -= 1);
             }, 1000);
 
             setTimeout(() => {
@@ -246,17 +252,36 @@ let obtainDataSurvey = async idSurvey => {
       document.querySelectorAll('.firstSeccionTitle strong').forEach( elem => { elem.style = "font-size: 13px;"; });
 
       // Modulo de preguntas pendientes no se puede ordenar
-      // document.querySelectorAll('.groupQuestionSection .questionSection').forEach(elem => { elem.style = "display: -webkit-box; font-size: 14px; font-weight: 600;"; });
       document.querySelectorAll('.groupQuestionSection .questionSection').forEach(elem => { elem.style = "font-size: 12px; font-weight: 600; text-align: left;"; });
       document.querySelectorAll('.groupQuestionSection .questionSection .col-md-1').forEach(elem => { elem.style = "display: none;"; });
 
-      // document.querySelectorAll('.groupQuestionSection hr').forEach(elem => { elem.style = "margin: -1rem 0 -0.5rem 0; padding: 0"; });
       document.querySelectorAll('.groupQuestionSection hr').forEach(elem => { elem.style = "display: none"; });
 
       document.querySelectorAll('.groupQuestionSection .answerSection').forEach(elem => { elem.style = "margin-top: -0.5rem"; });
       document.querySelectorAll('.groupQuestionSection .answerSection .responses ol').forEach(elem => { elem.style = "margin: 0;"; });
       document.querySelectorAll('.groupQuestionSection .answerSection .responses ol li').forEach(elem => { elem.style = "text-align: left; font-size: 12px"; });
-      document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection').forEach(elem => { elem.style = "padding: 0.5rem 0 0.5rem 1rem;"; });
+
+      document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection').forEach(elem => { 
+         elem.style = "padding: 0.5rem 0 0.5rem 1rem;"; 
+
+         let spanToParagraph = "<div class='multiple-section' style='margin-top: -0.5rem'>";
+         let divMultipleSpan = elem.querySelectorAll('.multiple-section span:not(.dataTextarea)');
+  
+         divMultipleSpan.forEach( span => {
+
+            if(span.classList.value == 'selected')
+               spanToParagraph += `<p style="margin-bottom: -0.15rem; border: 1px solid #000; border-radius: 0.5rem; padding: 0.2rem 0.7rem;">${span.innerText}</p>`;
+            else
+               spanToParagraph += `<p style="margin-bottom: 0.15rem;">${span.innerText}</p>`;
+            
+            span.remove()
+         } );
+         spanToParagraph += "</div>";
+
+         if(divMultipleSpan[0] != undefined)
+            elem.innerHTML = spanToParagraph;
+      });
+
       document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection span').forEach(elem => { elem.style = "padding: 0.5rem 1rem;"; });
       document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection .selected').forEach(elem => { elem.style = "border: 1px solid #000; border-radius: 0.5rem; padding: 0.2rem 0.7rem;"; });
       document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection span.dataTextarea').forEach(elem => { elem.style = "border: 0;"; });
@@ -265,9 +290,9 @@ let obtainDataSurvey = async idSurvey => {
       document.querySelector('.groupQuestionSection .answerSection.botonera').style = "display: none;";
    };
 
-   document.querySelector('.buttonSendSurvey').addEventListener('click', () => {
+   document.querySelector('.buttonSendSurvey').addEventListener('click', async () => {
 
-      document.querySelectorAll('textarea').forEach( textarea => {
+      await document.querySelectorAll('textarea').forEach( textarea => {
 
          let response = textarea.value;
 
@@ -275,7 +300,7 @@ let obtainDataSurvey = async idSurvey => {
          textarea.remove();
       });
 
-      modifyForPDF();
+      await modifyForPDF();
 
       setTimeout(async () => {
          let keySurvey = document.querySelector('#keySurveyClient').value;
