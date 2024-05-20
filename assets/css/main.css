@@ -145,21 +145,30 @@ ol li{
    margin-top: -0.3rem;
    margin-left: 0;
 
-   .project{
+   .client{
+      margin-top: -0.6rem;
+   }
 
-      margin-top: -0.5rem;
+   .project,
+   .footer{
+
+      margin-top: -0.8rem;
    }
 
    .firstSeccionTitle{
 
-      p, div{
+      div{
 
          font-weight: 500;
          color: #413B3B;
+
+         p span{
+            font-size: 13px;
+            margin-top: 0.15rem;
+         }
       }
 
       strong{
-
          color: #3A3939;
       }
 
@@ -170,11 +179,13 @@ ol li{
 
       .nameClient,
       .project,
+      .footer,
       .codeProjectClient,
       .nameProjectClient{
 
          display: flex;
          gap: 0.5rem;
+         white-space: nowrap;
       }
    }
 }
@@ -240,7 +251,22 @@ ol li{
    display: grid;
    /* flex-direction: column; */
    gap: 0.5rem;
-   width: 95%;
+   width: 92%;
+
+   .group-question{
+
+      display: flex;
+      gap: 0.5em;
+
+      div{
+         padding: 0.5rem 0.15rem;
+      }
+
+      span{
+         width: 100%;
+         font-size: 12px;
+      }
+   }
 }
 
 .answerSection .responses .labels{
@@ -429,9 +455,9 @@ ol li{
       text-align: center !important;
    }
 
-   .answerSection .responses .puntuacionSection span {
+   /* .answerSection .responses .puntuacionSection span {
       padding: 0.4rem 0.6rem;
       background-color: beige;
       border-radius: 0.5rem;
-  }
+  } */
 }

@@ -12,7 +12,7 @@ let ipServerSurveys = "http://127.0.0.1:1880";
       document.querySelector('.row.main-row').classList.toggle('hide');
 
       document.querySelector('#keyClientSurvey').classList.toggle('show');
-   }, 4000);
+   }, 2000);
 
    document.querySelector('#sendKeySurvey').addEventListener('click', async () => {
 
@@ -27,14 +27,15 @@ let ipServerSurveys = "http://127.0.0.1:1880";
          let dataSurveyClient = await fetch(`${ipServerSurveys}/checkKeyForSurvey?id=${keyClient}`).then(json => json.json()).then(data => data);
 
          let nameClient = document.querySelector('.firstSeccionTitle .client .nameClient');
-         let ordenCompraClient = document.querySelector('.firstSeccionTitle .client .ordenCompraClient');
+         let ordenCompraClient = document.querySelector('.firstSeccionTitle .project .ordenCompraClient');
          let codeProjectClient = document.querySelector('.firstSeccionTitle .project .codeProjectClient');
-         let nameProjectClient = document.querySelector('.firstSeccionTitle .project .nameProjectClient');
+         let nameProjectClient = document.querySelector('.firstSeccionTitle .footer .nameProjectClient');
 
          let strong = document.createElement('strong');
          strong.innerText = "Cliente: ";
          let divName = document.createElement('span');
          divName.classList = "name";
+         divName.style.whiteSpace = "break-spaces";
          divName.innerText = dataSurveyClient.nombre_cliente;
          nameClient.appendChild(strong);
          nameClient.appendChild(divName);
@@ -59,6 +60,7 @@ let ipServerSurveys = "http://127.0.0.1:1880";
          strong.innerText = "Descripción: ";
          divName = document.createElement('span');
          divName.classList = "descriptionProject";
+         divName.style.whiteSpace = "break-spaces";
          divName.innerText = dataSurveyClient.descripcion_proyecto_cliente;
          nameProjectClient.appendChild(strong);
          nameProjectClient.appendChild(divName);
@@ -137,12 +139,12 @@ let obtainDataSurvey = async idSurvey => {
          divNameSection.appendChild(divName);
 
          // Modulo de respuestas
-         let divAswerSection = document.createElement('div');
-         divAswerSection.className = "row answerSection justify-content-center";
+         let divAnswerSection = document.createElement('div');
+         divAnswerSection.className = "row answerSection justify-content-center";
 
          let divCol11 = document.createElement('div');
          divCol11.className = "col-md-11";
-         divAswerSection.appendChild(divCol11);
+         divAnswerSection.appendChild(divCol11);
          
          let divResponseSection = document.createElement('div');
          divResponseSection.className = "responseSection";
@@ -155,7 +157,7 @@ let obtainDataSurvey = async idSurvey => {
          let ol = document.createElement('ol');
          divResponses.appendChild(ol);
 
-         survey.forEach(question => {
+         survey.forEach((question, j) => {
 
             if(elem.nombre_seccion == question.nombre_seccion){
 
@@ -170,7 +172,7 @@ let obtainDataSurvey = async idSurvey => {
          });
          
          seccionSurvey.appendChild(divNameSection);
-         seccionSurvey.appendChild(divAswerSection);
+         seccionSurvey.appendChild(divAnswerSection);
 
          let hr = document.createElement('hr');
          seccionSurvey.appendChild(hr);
@@ -179,6 +181,16 @@ let obtainDataSurvey = async idSurvey => {
       }
 
       department = elem.nombre_seccion;
+   });
+
+   document.querySelectorAll('.puntuacionSection .multiple-section').forEach(elem => {
+
+      let initAscii = 65; // Letras en mayuscular
+      // let initAscii = 97; // Letras en minuscula
+      elem.querySelectorAll('.group-question').forEach((div, i) => {
+
+         div.querySelector('div').innerText = String.fromCharCode(initAscii + i) + ")";
+      });
    });
 
    // Modulo botonera
@@ -201,12 +213,12 @@ let obtainDataSurvey = async idSurvey => {
    divName.appendChild(pNameSection);
    divNameSection.appendChild(divName);
 
-   let divAswerSection = document.createElement('div');
-   divAswerSection.className = "row answerSection justify-content-center mb-5 botonera";
+   let divAnswerSection = document.createElement('div');
+   divAnswerSection.className = "row answerSection justify-content-center mb-5 botonera";
 
    let divCol11 = document.createElement('div');
    divCol11.className = "col-md-11";
-   divAswerSection.appendChild(divCol11);
+   divAnswerSection.appendChild(divCol11);
    
    let divResponseSection = document.createElement('div');
    divResponseSection.className = "responseSection";
@@ -226,7 +238,7 @@ let obtainDataSurvey = async idSurvey => {
    colButtonsActions.appendChild(buttonEnviarEncuesta);
 
    seccionSurvey.appendChild(divNameSection);
-   seccionSurvey.appendChild(divAswerSection);
+   seccionSurvey.appendChild(divAnswerSection);
 
    document.querySelectorAll('.groupQuestionSection .row.answerSection .responses .puntuacionSection').forEach( section => {
 
@@ -248,8 +260,10 @@ let obtainDataSurvey = async idSurvey => {
       // Header Module
       document.querySelector('.firstSeccionTitle .client').style = "display: flex; flex-direction: column; gap: 0.5rem; text-align: left;";
       document.querySelector('.firstSeccionTitle .project').style = "display: flex; flex-direction: column; gap: 0.5rem; text-align: left;";
-      document.querySelectorAll('.firstSeccionTitle p').forEach( elem => { elem.style = "margin: 0; font-size: 12px;"; });
-      document.querySelectorAll('.firstSeccionTitle strong').forEach( elem => { elem.style = "font-size: 13px;"; });
+      document.querySelector('.firstSeccionTitle .footer').style = "display: flex; flex-direction: column; gap: 0.5rem; text-align: left;";
+      document.querySelectorAll('.firstSeccionTitle p').forEach( elem => { elem.style = "margin: 0;"; });
+      document.querySelectorAll('.firstSeccionTitle span').forEach( elem => { elem.style = "font-size: 10px !important;"; });
+      document.querySelectorAll('.firstSeccionTitle strong').forEach( elem => { elem.style = "font-size: 12px !important;"; });
 
       // Modulo de preguntas pendientes no se puede ordenar
       document.querySelectorAll('.groupQuestionSection .questionSection').forEach(elem => { elem.style = "font-size: 12px; font-weight: 600; text-align: left;"; });
@@ -259,7 +273,7 @@ let obtainDataSurvey = async idSurvey => {
 
       document.querySelectorAll('.groupQuestionSection .answerSection').forEach(elem => { elem.style = "margin-top: -0.5rem"; });
       document.querySelectorAll('.groupQuestionSection .answerSection .responses ol').forEach(elem => { elem.style = "margin: 0;"; });
-      document.querySelectorAll('.groupQuestionSection .answerSection .responses ol li').forEach(elem => { elem.style = "text-align: left; font-size: 12px"; });
+      document.querySelectorAll('.groupQuestionSection .answerSection .responses ol li').forEach(elem => { elem.style = "text-align: left; font-size: 12px;"; });
 
       document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection').forEach(elem => { 
          elem.style = "padding: 0.5rem 0 0.5rem 1rem;"; 
@@ -270,9 +284,9 @@ let obtainDataSurvey = async idSurvey => {
          divMultipleSpan.forEach( span => {
 
             if(span.classList.value == 'selected')
-               spanToParagraph += `<p style="margin-bottom: -0.15rem; border: 1px solid #000; border-radius: 0.5rem; padding: 0.2rem 0.7rem;">${span.innerText}</p>`;
+               spanToParagraph += `<p style="margin-bottom: -0.15rem; border: 1px solid #000; border-radius: 0.5rem; padding: 0.2rem 0.7rem; font-size: 11px;">${span.innerText}</p>`;
             else
-               spanToParagraph += `<p style="margin-bottom: 0.15rem;">${span.innerText}</p>`;
+               spanToParagraph += `<p style="margin-bottom: 0.15rem; font-size: 11px;">${span.innerText}</p>`;
             
             span.remove()
          } );
