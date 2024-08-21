@@ -1,8 +1,6 @@
 
-let ipServerSurveys = "http://127.0.0.1:1880";
-// let ipServerSurveys = "http://192.168.0.101:1880";
-// let ipServerSurveys = "http://10.10.103.99:1880";
-// let ipServerSurveys = "https://websas.sinci.com:1880";
+// let ipServerSurveys = "http://127.0.0.1:1880";
+let ipServerSurveys = "https://websas.sinci.com:1880";
 
 (() => {
 
