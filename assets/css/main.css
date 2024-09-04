@@ -229,12 +229,15 @@ ol li{
 .answerSection .responses .puntuacionSection span{
 
    padding: 0.5rem 0.8rem;
-   background-color: beige;
+   /* background-color: beige; */
+   background-color: rgb(252, 106, 65, 0.3);
    border-radius: 0.5rem;
 }
 
 .answerSection .responses .puntuacionSection span:hover{
-   background-color: #fff;
+   /* background-color: #fff; */
+   background-color: rgb(252, 106, 65, 0.8);
+   color: #fff;
    cursor: pointer;
 }
 
@@ -264,7 +267,8 @@ ol li{
 
       span{
          width: 100%;
-         font-size: 12px;
+         /* font-size: 12px; */
+         font-size: 11.5px;
       }
    }
 }
@@ -284,7 +288,9 @@ ol li{
 
 .selected{
 
-   background-color: aquamarine !important;
+   /* background-color: aquamarine !important; */
+   background-color: rgb(252, 106, 65, 0.8) !important;
+   color: #fff;
 }
 
 
