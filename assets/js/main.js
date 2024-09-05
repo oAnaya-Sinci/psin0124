@@ -2,6 +2,8 @@
 // let ipServerSurveys = "http://127.0.0.1:1880";
 let ipServerSurveys = "https://websas.sinci.com:1880";
 
+let keyClient;
+
 (() => {
 
   setTimeout(() => {
@@ -14,7 +16,7 @@ let ipServerSurveys = "https://websas.sinci.com:1880";
 
   document.querySelector('#sendKeySurvey').addEventListener('click', async () => {
 
-    let keyClient = document.querySelector('#keySurveyClient').value;
+    keyClient = document.querySelector('#keySurveyClient').value;
 
     try {
 
@@ -315,7 +317,8 @@ let obtainDataSurvey = async idSurvey => {
     modifyForPDF();
 
     setTimeout(async () => {
-      let keySurvey = document.querySelector('#keySurveyClient').value;
+      // let keySurvey = document.querySelector('#keySurveyClient').value;
+      let keySurvey = keyClient;
       let dataClient = document.querySelector('.firstSeccionTitle').innerHTML;
       let responseQuestions = document.querySelector('.groupQuestionSection').innerHTML;
 
