@@ -126,18 +126,27 @@ ol li{
    height: auto;
 }
 
-.obligatorio{
+.obligatorioParagraph{
 
    font-weight: 400;
    font-size: 12px;
    display: flex;
    gap: 0.2rem;
 
-   span{
+   .obligatorio{
 
       color: #bc2f32;
       font-size: 16px;
    }
+}
+
+.obligatorio{
+  color: #bc2f32;
+  font-size: 16px;
+}
+
+.ms-1{
+  margin-left: 0.25rem;
 }
 
 .card-body .row.title{

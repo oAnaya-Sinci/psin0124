@@ -17,7 +17,6 @@ let keyClient;
   document.querySelector('#sendKeySurvey').addEventListener('click', async () => {
 
     keyClient = document.querySelector('#keySurveyClient').value;
-
     try {
 
       document.querySelector('#keyClientSurvey').classList.toggle('show');
@@ -109,7 +108,6 @@ let keyClient;
 let obtainDataSurvey = async idSurvey => {
 
   let dataSurvey = await fetch(`${ipServerSurveys}/obtainDataSurvey?id=${idSurvey}`).then(json => json.json()).then(data => data);
-
   let seccionSurvey = document.querySelector('.groupQuestionSection');
 
   let department = '';
@@ -117,6 +115,10 @@ let obtainDataSurvey = async idSurvey => {
   dataSurvey.forEach((elem, i, survey) => {
 
     if (department != elem.nombre_seccion) {
+
+      let obligatorioParagraph = document.createElement('span');
+      obligatorioParagraph.className = "obligatorio ms-1";
+      obligatorioParagraph.innerText = "*";
 
       // Modulo de encabezados de seccion
       let divNameSection = document.createElement('div');
@@ -135,6 +137,7 @@ let obtainDataSurvey = async idSurvey => {
       let pNameSection = document.createElement('p');
       pNameSection.className = "descriptionQuestion";
       pNameSection.innerText = elem.nombre_seccion;
+      pNameSection.appendChild(obligatorioParagraph);
       divName.appendChild(pNameSection);
       divNameSection.appendChild(divName);
 
