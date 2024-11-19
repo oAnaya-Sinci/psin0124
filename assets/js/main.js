@@ -167,7 +167,7 @@ let obtainDataSurvey = async idSurvey => {
           let li = document.createElement('li');
           li.innerText = question.pregunta;
           let divPuntuacionSection = document.createElement('div');
-          divPuntuacionSection.className = "puntuacionSection";
+          divPuntuacionSection.className = elem.nombre_seccion != 'IMAGEN' ? "puntuacionSection" : "puntuacionSection image";
           divPuntuacionSection.innerHTML = question.etiquetas_html;
           li.appendChild(divPuntuacionSection);
           ol.appendChild(li);
@@ -243,7 +243,7 @@ let obtainDataSurvey = async idSurvey => {
   seccionSurvey.appendChild(divNameSection);
   seccionSurvey.appendChild(divAnswerSection);
 
-  document.querySelectorAll('.groupQuestionSection .row.answerSection .responses .puntuacionSection').forEach(section => {
+  document.querySelectorAll('.groupQuestionSection .row.answerSection .responses .puntuacionSection:not(.image)').forEach(section => {
 
     section.querySelectorAll('span').forEach(span => {
 
@@ -252,6 +252,21 @@ let obtainDataSurvey = async idSurvey => {
         section.querySelectorAll('span.selected').forEach(singleSpan => {
           singleSpan.classList.toggle('selected');
         });
+
+        span.classList.toggle('selected');
+      });
+    });
+  });
+
+  document.querySelectorAll('.groupQuestionSection .row.answerSection .responses .puntuacionSection.image').forEach(section => {
+
+    section.querySelectorAll('span').forEach(span => {
+
+      span.addEventListener('click', event => {
+
+        // section.querySelectorAll('span.selected').forEach(singleSpan => {
+        //   singleSpan.classList.toggle('selected');
+        // });
 
         span.classList.toggle('selected');
       });
