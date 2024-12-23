@@ -8,13 +8,17 @@
   line-height: 1.42857143 !important;
 }
 
-body {
+/* body {
   background: url(/assets/img/gradientWawes.svg) center top / cover no-repeat,
     linear-gradient(
       180deg,
       rgba(128, 34, 36, 0.2) 0%,
       rgba(128, 34, 36, 0.8) 100%
     );
+} */
+
+body {
+  background: url(/assets/img/fondos_encuestas/fondo_principal.svg) no-repeat center center / cover;
 }
 
 hr {
@@ -37,6 +41,25 @@ ol li {
   padding-top: 1.1rem;
 }
 
+button.btn{
+  background: linear-gradient(50deg, #fa7d39, #9e011b);
+  border-color: unset;
+}
+
+button.btn:hover{
+  border-color: #9e011b;
+}
+
+button.btn:active{
+  background-color: #fa7d39 !important;
+  border-color: #9e011b !important;
+}
+
+button.btn.active{
+  background-color: #fa7d39 !important;
+  border-color: #9e011b !important;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -57,8 +80,8 @@ ol li {
 }
 
 .modal-dialog {
-  margin-top: 3rem;
-  max-width: 550px;
+  margin-top: 6rem;
+  max-width: 580px;
 }
 
 .modal.fade.show {
@@ -67,7 +90,8 @@ ol li {
 
 .modal.fade .modal-header {
   /* background-color: #802224; */
-  background: linear-gradient(50deg, #fa7d39, #9e011b);
+  /* background: linear-gradient(50deg, #fa7d39, #9e011b); */
+  background: url(/assets/img/fondos_encuestas/Pleca_superior.svg) no-repeat center center / cover;
   color: #fff;
 }
 
@@ -90,16 +114,18 @@ ol li {
 
 .col-md-6.main {
   height: 97.5vh;
-  margin-left: 5rem;
+  margin-left: 6rem;
 }
 
 .card {
   background-color: rgba(255, 255, 255, 0.75);
+  /* border: none; */
 }
 
 .card-header {
   /* background-color: #802224; */
-  background: linear-gradient(50deg, #ff8c47, #9e011b);
+  /* background: linear-gradient(50deg, #ff8c47, #9e011b); */
+  background: url(/assets/img/fondos_encuestas/Pleca_superior.svg) no-repeat center center / cover;
   color: #fff;
   padding: 1.5rem 2rem 1rem 2rem;
   display: flex;
