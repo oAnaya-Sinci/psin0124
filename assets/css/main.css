@@ -8,15 +8,6 @@
   line-height: 1.42857143 !important;
 }
 
-/* body {
-  background: url(/assets/img/gradientWawes.svg) center top / cover no-repeat,
-    linear-gradient(
-      180deg,
-      rgba(128, 34, 36, 0.2) 0%,
-      rgba(128, 34, 36, 0.8) 100%
-    );
-} */
-
 body {
   background: url(/assets/img/fondos_encuestas/fondo_principal.svg) no-repeat center center / cover;
 }
@@ -64,9 +55,9 @@ button.btn.active{
   display: none;
 }
 
-#keyClientSurvey {
-  /* visibility: hidden; */
-}
+/* #keyClientSurvey {
+  visibility: hidden;
+} */
 
 .loaderPage {
   width: 16%;
@@ -76,7 +67,6 @@ button.btn.active{
 }
 
 .firstSeccionTitle {
-  /* margin: 0 0 1.5rem 0; */
   margin: 0 0 0 0;
 }
 .modal-titte {
@@ -93,8 +83,6 @@ button.btn.active{
 }
 
 .modal.fade .modal-header {
-  /* background-color: #802224; */
-  /* background: linear-gradient(50deg, #fa7d39, #9e011b); */
   background: url(/assets/img/fondos_encuestas/Pleca_superior.svg) no-repeat center center / cover;
   color: #fff;
 }
@@ -123,7 +111,7 @@ button.btn.active{
 }
 
 .col-md-6.openedSurvey {
-  transition: all 1.5s ease;
+  transition: all 1.3s ease;
   transform: translateY(0%); 
 }
 
@@ -133,8 +121,6 @@ button.btn.active{
 }
 
 .card-header {
-  /* background-color: #802224; */
-  /* background: linear-gradient(50deg, #ff8c47, #9e011b); */
   background: url(/assets/img/fondos_encuestas/Pleca_superior.svg) no-repeat center center / cover;
   color: #fff;
   padding: 1.5rem 2rem 1rem 2rem;
@@ -148,6 +134,7 @@ button.btn.active{
 }
 
 .card-header {
+  
   p:first-child {
     font-weight: 700;
     font-size: 22px;
@@ -161,8 +148,7 @@ button.btn.active{
 }
 
 .card-body {
-  padding: 1rem 1.5rem 0 2rem;
-  /* height: 145vh; */
+  padding: 1rem 1.5rem 0 1.7rem;
   height: auto;
 }
 
@@ -245,10 +231,8 @@ button.btn.active{
 .numberQuestion {
   font-size: 13.5px;
   margin: 0.4rem 0.4rem;
-  /* padding: 0.2rem; */
   padding: 0.4rem 0.3rem 0.2rem 0.2rem;
   text-align: center;
-  /* background-color: #802224; */
   background-color: #ec5435;
   color: #fff;
   font-weight: 600;
@@ -270,13 +254,11 @@ button.btn.active{
 
 .answerSection .responses .puntuacionSection span {
   padding: 0.5rem 0.8rem;
-  /* background-color: beige; */
   background-color: rgb(252, 106, 65, 0.3);
   border-radius: 0.5rem;
 }
 
 .answerSection .responses .puntuacionSection span:hover {
-  /* background-color: #fff; */
   background-color: rgb(252, 106, 65, 0.8);
   color: #fff;
   cursor: pointer;
@@ -292,7 +274,6 @@ button.btn.active{
 
 .answerSection .responses .puntuacionSection .multiple-section {
   display: grid;
-  /* flex-direction: column; */
   gap: 0.5rem;
   width: 92%;
 
@@ -306,7 +287,6 @@ button.btn.active{
 
     span {
       width: 100%;
-      /* font-size: 12px; */
       font-size: 11.5px;
     }
   }
@@ -324,7 +304,6 @@ button.btn.active{
 }
 
 .selected {
-  /* background-color: aquamarine !important; */
   background-color: rgb(252, 106, 65, 0.8) !important;
   color: #fff;
 }
@@ -479,10 +458,4 @@ textarea {
   .botonera .col-md-6 {
     text-align: center !important;
   }
-
-  /* .answerSection .responses .puntuacionSection span {
-      padding: 0.4rem 0.6rem;
-      background-color: beige;
-      border-radius: 0.5rem;
-  } */
 }
