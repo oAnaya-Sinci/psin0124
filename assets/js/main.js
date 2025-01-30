@@ -1,22 +1,24 @@
 
 // let ipServerSurveys = "http://127.0.0.1:1880";
 let ipServerSurveys = "https://websas.sinci.com:1880";
-
 let keyClient;
 
 (() => {
 
-  setTimeout(() => {
+  keyClient = window.location.search.split('key=')[1];
+  document.querySelector('#keySurveyClient').value = keyClient;
 
+  setTimeout(() => {
     document.querySelector('.loaderPage').style.display = "none";
     document.querySelector('.row.main-row').classList.toggle('hide');
 
     document.querySelector('#keyClientSurvey').classList.toggle('show');
-  }, 2000);
+    document.querySelector('#sendKeySurvey').click();
+  }, 1000);
 
   document.querySelector('#sendKeySurvey').addEventListener('click', async () => {
 
-    keyClient = document.querySelector('#keySurveyClient').value;
+    // keyClient = document.querySelector('#keySurveyClient').value;
     try {
 
       document.querySelector('#keyClientSurvey').classList.toggle('show');
@@ -72,16 +74,25 @@ let keyClient;
       document.querySelector('#keyClientSurvey .modal-body .messageKey').remove();
 
       let messageNoSurvey = document.createElement('p');
-      messageNoSurvey.innerText = "La llave ingresada ya ha sido usada o la misma no es valida, por favor contacte con soporte para validar la información... ";
-      messageNoSurvey.style.fontSize = "16px";
+      messageNoSurvey.innerText = "Esta encuesta ya ha sido completada, en caso de no reconocer esta accion por favor contacte con soporte SINCI® para validar la información... ";
+      messageNoSurvey.style.fontSize = "15px";
       messageNoSurvey.style.fontWeight = "500";
       let spanSecond = document.createElement('span');
       spanSecond.classList.add("seconds");
-      spanSecond.innerText = "10";
+      spanSecond.innerText = "30";
       messageNoSurvey.appendChild(spanSecond)
 
       document.querySelector('#keyClientSurvey .modal-body').appendChild(messageNoSurvey);
-      document.querySelector('#keyClientSurvey .modal-footer').remove();
+
+      let btnsoporte = document.createElement('button');
+      btnsoporte.className = "btn btn-primary buttonSendSurvey";
+      btnsoporte.innerText = "Contactar con soporte";
+      btnsoporte.addEventListener('click', () => {
+        window.open("https://sinci.com/contacto", "_self");
+      });
+
+      document.querySelector('#keyClientSurvey .modal-footer #sendKeySurvey').remove();
+      document.querySelector('#keyClientSurvey .modal-footer').appendChild(btnsoporte);
 
       setTimeout(() => {
 
@@ -89,15 +100,16 @@ let keyClient;
         document.querySelector('.row.main-row').classList.toggle('hide');
         document.querySelector('#keyClientSurvey').classList.toggle('show');
 
-        let seconds = 10;
+        let seconds = 30;
         setInterval(() => {
           if (seconds > 0)
-            document.querySelector('span.seconds').innerText = '0' + (seconds -= 1);
+            document.querySelector('span.seconds').innerText = (seconds -= 1);
         }, 1000);
 
         setTimeout(() => {
-          location.reload()
-        }, 11000);
+          // location.reload()
+          window.open("https://sinci.com/contacto", "_self");
+        }, 31000);
       }, 2000);
 
       console.warn(error);
@@ -324,6 +336,8 @@ let obtainDataSurvey = async idSurvey => {
 
   document.querySelector('.buttonSendSurvey').addEventListener('click', async () => {
 
+    document.querySelector('.col-md-6.main').classList.toggle('hiddenSurvey');
+
     document.querySelectorAll('textarea').forEach(textarea => {
 
       let response = textarea.value;
@@ -339,8 +353,6 @@ let obtainDataSurvey = async idSurvey => {
       let keySurvey = keyClient;
       let dataClient = document.querySelector('.firstSeccionTitle').innerHTML;
       let responseQuestions = document.querySelector('.groupQuestionSection').innerHTML;
-
-      console.log(dataClient);
 
       let surveyClient = {
         'key': keySurvey,
@@ -358,13 +370,56 @@ let obtainDataSurvey = async idSurvey => {
 
       await fetch(`${ipServerSurveys}/saveDataSurveyClient`, headers);
 
-      location.reload();
-    }, 400);
+      // document.querySelector('.loaderPage').style.display = 'block';
+      document.querySelector('#keyClientSurvey .modal-body .messageKey').remove();
+
+      let messageNoSurvey = document.createElement('p');
+      messageNoSurvey.innerText = "SINCI® Agradece su tiempo para la realiación de la encuesta, en breve recibira una copia de la misma en su correo electrónico, quedamos a su disposición para cualquier consulta o duda... ";
+      messageNoSurvey.style.fontSize = "15px";
+      messageNoSurvey.style.fontWeight = "500";
+      let spanSecond = document.createElement('span');
+      spanSecond.classList.add("seconds");
+      spanSecond.innerText = "30";
+      messageNoSurvey.appendChild(spanSecond)
+
+      document.querySelector('#keyClientSurvey .modal-body').appendChild(messageNoSurvey);
+
+      let btnsoporte = document.createElement('button');
+      btnsoporte.className = "btn btn-primary buttonSendSurvey";
+      btnsoporte.innerText = "Contactar con soporte";
+      btnsoporte.addEventListener('click', () => {
+        window.open("https://sinci.com/contacto", "_self");
+      });
+
+      document.querySelector('#keyClientSurvey .modal-footer #sendKeySurvey').remove();
+      document.querySelector('#keyClientSurvey .modal-footer').appendChild(btnsoporte);
+  
+      setTimeout(() => {
+
+        // document.querySelector('.loaderPage').style.display = 'none';
+        document.querySelector('#keyClientSurvey').classList.toggle('show');
+
+        let seconds = 30;
+        setInterval(() => {
+          if (seconds > 0)
+            document.querySelector('span.seconds').innerText = (seconds -= 1);
+        }, 1000);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 31000);
+      }, 700);
+
+    }, 500);
   });
 
   setTimeout(() => {
     document.querySelector('.loaderPage').style.display = 'none';
     document.querySelector('.row.main-row').classList.toggle('hide');
     document.querySelector('.col-md-6.main').classList.toggle('hiddenSurvey');
-  }, 2000);
+
+    setTimeout(() => {
+      document.querySelector('.col-md-6.main').classList.toggle('openedSurvey');
+    }, 200);
+  }, 1000);
 };

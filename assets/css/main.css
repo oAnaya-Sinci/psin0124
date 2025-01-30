@@ -64,6 +64,10 @@ button.btn.active{
   display: none;
 }
 
+#keyClientSurvey {
+  /* visibility: hidden; */
+}
+
 .loaderPage {
   width: 16%;
   height: 100vh;
@@ -108,13 +112,19 @@ button.btn.active{
   display: none;
 }
 
+.col-md-6.main {
+  height: 97.5vh;
+  margin-left: 6rem;
+  transform: translateY(100%);
+}
+
 .col-md-6.hiddenSurvey {
   opacity: 0;
 }
 
-.col-md-6.main {
-  height: 97.5vh;
-  margin-left: 6rem;
+.col-md-6.openedSurvey {
+  transition: all 1.5s ease;
+  transform: translateY(0%); 
 }
 
 .card {
@@ -151,7 +161,7 @@ button.btn.active{
 }
 
 .card-body {
-  padding: 1rem 1.5rem 0 1.5rem;
+  padding: 1rem 1.5rem 0 2rem;
   /* height: 145vh; */
   height: auto;
 }
