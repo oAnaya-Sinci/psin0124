@@ -374,7 +374,7 @@ let obtainDataSurvey = async idSurvey => {
       document.querySelector('#keyClientSurvey .modal-body .messageKey').remove();
 
       let messageNoSurvey = document.createElement('p');
-      messageNoSurvey.innerText = "SINCI® Agradece su tiempo para la realiación de la encuesta, en breve recibira una copia de la misma en su correo electrónico, quedamos a su disposición para cualquier consulta o duda... ";
+      messageNoSurvey.innerText = "SINCI® Agradece su tiempo para la realización de la encuesta, en breve recibirá una copia de esta en su correo electrónico, quedamos a su disposición para cualquier consulta o duda... ";
       messageNoSurvey.style.fontSize = "15px";
       messageNoSurvey.style.fontWeight = "500";
       let spanSecond = document.createElement('span');
