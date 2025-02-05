@@ -63,7 +63,7 @@
     INSERT INTO secciones_encuesta_preguntas(id_seccion_encuesta, pregunta) VALUES(3, '¿Como calificaría la supervisión de seguridad industrial en sitio?');
     
     # -Seccion 4-
-    INSERT INTO secciones_encuesta_preguntas(id_seccion_encuesta, pregunta) VALUES(4, '¿Que tan probable es que recomiende a SINCI?');
+    INSERT INTO secciones_encuesta_preguntas(id_seccion_encuesta, pregunta) VALUES(4, '¿Que tan probable es que recomiende a SINCI®?');
     INSERT INTO secciones_encuesta_preguntas(id_seccion_encuesta, pregunta) VALUES(4, '¿Que tan probable es que nos vuelva a contratar?');
     
     # -Seccion 5-
