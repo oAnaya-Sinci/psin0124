@@ -308,19 +308,19 @@ let obtainDataSurvey = async idSurvey => {
     document.querySelectorAll('.groupQuestionSection .answerSection .responses .puntuacionSection').forEach(elem => {
       elem.style = "padding: 0.5rem 0 0.5rem 1rem;";
 
-      let spanToParagraph = "<div class='multiple-section' style='margin-top: -0.5rem'>";
+      let spanToParagraph = "<div class='multiple-section' style='margin-top: -0.5rem'><ol type='A'>";
       let divMultipleSpan = elem.querySelectorAll('.multiple-section span:not(.dataTextarea)');
 
       divMultipleSpan.forEach(span => {
 
         if (span.classList.value == 'selected')
-          spanToParagraph += `<p style="margin-bottom: -0.15rem; border: 1px solid #000; border-radius: 0.5rem; padding: 0.2rem 0.7rem; font-size: 11px;">${span.innerText}</p>`;
+          spanToParagraph += `<li><p style="margin-bottom: -0.15rem; border: 1px solid #000; border-radius: 0.5rem; padding: 0.2rem 0.7rem; font-size: 11px;">${span.innerText}</p></li>`;
         else
-          spanToParagraph += `<p style="margin-bottom: 0.15rem; font-size: 11px;">${span.innerText}</p>`;
+          spanToParagraph += `<li><p style="margin-bottom: 0.15rem; font-size: 11px;">${span.innerText}</p></li>`;
 
         span.remove()
       });
-      spanToParagraph += "</div>";
+      spanToParagraph += "</ol></div>";
 
       if (divMultipleSpan[0] != undefined)
         elem.innerHTML = spanToParagraph;
